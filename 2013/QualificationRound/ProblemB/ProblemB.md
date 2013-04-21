@@ -28,9 +28,10 @@ Limits
 1 ≤ T ≤ 100.
 
 Small dataset
--------------
+
 1 ≤ N, M ≤ 10.
 1 ≤ ai,j ≤ 2.
+
 Large dataset
 
 1 ≤ N, M ≤ 100.
@@ -55,7 +56,6 @@ Sample Input
 
 Sample Output 
 -------------
-
     Case #1: YES
     Case #2: NO
     Case #3: YES
