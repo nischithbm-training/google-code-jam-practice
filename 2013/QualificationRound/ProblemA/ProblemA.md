@@ -1,5 +1,5 @@
-Tic-Tac-Toe-Tomek
-=================
+Problem A. Tic-Tac-Toe-Tomek
+============================
 
 Small input : 10 points  
 Large input : 20 points	
