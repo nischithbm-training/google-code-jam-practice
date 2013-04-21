@@ -1,106 +1,106 @@
-#include <iostream>
-#include <string>
+#include <cstdio>
 
 using namespace std;
 
 /* Function Prototypes */
 void readBoardData();
 bool check(char c);
-string processTestCase();
+void processTestCase();
 
 
 /* Global Variables */
 int T;
 char board[4][4];
-bool isEmptyFields;
+bool emptyFields;
 
 
 int main() {
-    string tempStr;
+    scanf("%d", &T);
 
-    cin >> T;
-    getline(cin,tempStr);
-    
-    for (int t=0;t<T;t++ ) {
-        cout << "Case #" << t+1 << ": " << processTestCase() << endl;
-        
-      getline(cin,tempStr);
+    int t=0;
+    while (t<T) {
+        printf("Case #%d: ", ++t);
+        processTestCase();
     }
 
     return 0;
 }
 
-string processTestCase() {
-    isEmptyFields = false;
+void processTestCase() {
+    emptyFields = false;
     readBoardData();
 
     if(check('X')){
-        return "X won";
+        printf("X won\n");
+        return;
     }
     if(check('O')){
-        return "O won";
+        printf("O won\n");
+        return;
     }
     
-    if(isEmptyFields){
-        return "Game has not completed";
+    if(emptyFields){
+        printf("Game has not completed\n");
+        return;
     }
+    printf("Draw\n");
 
-    return "Draw";
+    return;
 }
 
 
 bool check(char c) {
     int joker = 'T';
-    int counter = 0;
+    bool win = true;
         
     // find in left diagonal
-    counter = 0;
+    win = true;
     for (int i=0;i<4;i++ ) {
         for (int j=0;j<4;j++ ) {
-            if(i==j & (board[i][j] == c || board[i][j] == joker) ){
-                counter++;
+            if(i==j & board[i][j] != c && board[i][j] != joker ){
+                win = false;
             }
         }
     }
-    if(counter == 4){
+    if(win){
         return true;
     }
 
     // find in right diagonal
-    counter = 0;
+    win = true;
     for (int i=3;i>=0;i-- ) {
         for (int j=0;j<4;j++ ) {
-            if( (i+j)==3 & (board[i][j] == c || board[i][j] == joker) ){
-                counter++;
+            if( (i+j)==3 & board[i][j] != c && board[i][j] != joker ){
+                win = false;
             }
         }
     }
-    if(counter == 4){
+    if(win){
         return true;
     }
 
     // find in rows
     for (int i=0;i<4;i++ ) {
-        counter = 0;
+        win = true;
         for (int j=0;j<4;j++ ) {
-            if(board[i][j] == c || board[i][j] == joker ){
-                counter++;
+            if(board[i][j] != c && board[i][j] != joker ){
+                win = false;
             }
         }
-        if(counter == 4){
+        if(win){
             return true;
         }
     }
     
     // find in columns
     for (int j=0;j<4;j++ ) {
-        counter = 0;
+        win = true;
         for (int i=0;i<4;i++ ) {
-            if(board[i][j] == c || board[i][j] == joker ){
-                counter++;
+            if(board[i][j] != c && board[i][j] != joker ){
+                win = false;
             }
         }
-        if(counter == 4){
+        if(win){
             return true;
         }
     }
@@ -111,9 +111,9 @@ bool check(char c) {
 void readBoardData() {
     for (int i=0;i<4;i++ ) {
         for (int j=0;j<4;j++ ) {
-            cin >> board[i][j];
+            scanf(" %c", &board[i][j]);
             if(board[i][j] == '.'){
-                isEmptyFields = true;
+                emptyFields = true;
             }
         }
     }
