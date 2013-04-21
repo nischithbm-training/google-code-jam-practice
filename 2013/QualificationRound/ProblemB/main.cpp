@@ -50,10 +50,10 @@ bool isValidLawnPattern() {
 
     bool valid = true;
     for (int i=0;i<N;i++){
-		for (int j=0;j<M;j++) {
-			if (lawnPattern[i][j] != min(R[i],C[j])) valid = false;
-		}
-	}
+        for (int j=0;j<M;j++) {
+            if (lawnPattern[i][j] != min(R[i],C[j])) valid = false;
+        }
+    }
 
     return valid;
 }
